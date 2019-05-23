@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+<body>
+<div class="container">
+    <form action="/" method="post">
+        <div class="form-row ">
+            <div class="input-group-lg col">
+                <label for="objectif">Nouvel objectif</label>
+                <input type="text" class="form-control form-control-lg" name="objectif" placeholder="nom de l'objectif">
+            </div>
+            <div class="input-group-lg col">
+                <label for="comment">Commentaire</label>
+                <input type="text" class="form-control form-control-lg" name="comment" placeholder="commentaire sur l'objectif">
+            </div>
+            <div class="col-md-3">
+                <label for="submiter">Ajouter</label>
+                <input type="submit" class="form-control btn btn-success btn-lg" name="submiter" value="+">
+            </div>
+        </div>
+    </form>
+    <h1>Liste d'objectif</h1>
+
+    <div class="row">
+        <% var i=1 %>
+        <% var j=1 %>
+        <% for (groupe of groupes){ %>
+            <div class="col">
+                <ul class="list-group ui-droppable" id="container<%= i %>">
+                    <li class="list-group-item active"><%= groupe.titre %></li>
+                    <% for (contenu of contenus){ %>
+                        <%if (contenu.id_groupe == groupe.id) { %>
+                            <li itemid="itm-<%= j %>" class="list-group-item box-item">
+                                <button type="button" class="btn btn-outline-danger remove">X</button>
+                                <%= contenu.nom %> : <%= contenu.commentaire %>
+                                <input type="hidden" class="idContenu" value="<%= contenu.id %>">
+                            </li>
+                            <% j=j+1 %>
+                        <% } %>
+                    <% } %>
+                </ul>
+            </div>
+            <% i=i+1 %>
+        <% } %>
+    </div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src="/javascripts/script.js"></script>
+
+</html>
